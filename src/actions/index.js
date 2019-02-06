@@ -17,7 +17,7 @@ export const createRun = formValues => async (dispatch, getState) => {
   history.push('/runs');
 };
 
-export const fetchStreams = () => async dispatch => {
+export const fetchRuns = () => async dispatch => {
   const response = await runs.get('/runs');
 
   dispatch({ type: FETCH_RUNS, payload: response.data });
