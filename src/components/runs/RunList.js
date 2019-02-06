@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-function mapStateToProps(state) {
-  return {};
-}
-
 class RunList extends Component {
   render() {
     return (
@@ -18,6 +14,10 @@ class RunList extends Component {
       </div>
     );
   }
+}
+
+function mapStateToProps(state) {
+  return {};
 }
 
 export default connect(mapStateToProps)(RunList);
