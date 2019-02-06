@@ -9,7 +9,7 @@ import {
 } from './types';
 
 export const createRun = formValues => async (dispatch, getState) => {
-  const userId = 1; // hard code for one user for now
+  const { userId } = getState().auth; // hard code for one user for now
   const response = await runs.post('/runs', { ...formValues, userId });
 
   dispatch({ type: CREATE_RUN, payload: response.data });
