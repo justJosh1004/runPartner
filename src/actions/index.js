@@ -5,8 +5,23 @@ import {
   FETCH_RUN,
   FETCH_RUNS,
   DELETE_RUN,
-  EDIT_RUN
+  EDIT_RUN,
+  SIGN_IN,
+  SIGN_OUT
 } from './types';
+
+export const signIn = userId => {
+  return {
+    type: SIGN_IN,
+    payload: userId
+  };
+};
+
+export const signOut = () => {
+  return {
+    type: SIGN_OUT
+  };
+};
 
 export const createRun = formValues => async (dispatch, getState) => {
   const { userId } = getState().auth; // hard code for one user for now

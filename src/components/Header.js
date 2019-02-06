@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import Auth from './Auth';
+
 const Header = () => {
   return (
     <nav className="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
@@ -16,8 +18,8 @@ const Header = () => {
       >
         <span className="navbar-toggler-icon" />
       </button>
-      <div className="collapse navbar-collapse" id="navbarHeader">
-        <div className="navbar-nav">
+      <div className="collapse navbar-collapse d-flex" id="navbarHeader">
+        <div className="navbar-nav p-2">
           <Link to="/" className="nav-item nav-link active">
             Home <span className="sr-only">(current)</span>
           </Link>
@@ -27,6 +29,12 @@ const Header = () => {
           <Link to="/runs" className="nav-item nav-link">
             View Runs
           </Link>
+        </div>
+        <div className="navbar-nav ml-auto p-2">
+          <Link to="/" className="nav-item nav-link">
+            Profile
+          </Link>
+          <Auth />
         </div>
       </div>
     </nav>
