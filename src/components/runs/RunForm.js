@@ -16,13 +16,24 @@ class RunForm extends Component {
     return (
       <FormGroup>
         <Label for={id}>{label}</Label>
-        <Input name={name} type={type} id={id} placeholder={placeholder} />
+        <Input
+          {...input}
+          name={name}
+          type={type}
+          id={id}
+          placeholder={placeholder}
+        />
       </FormGroup>
     );
   };
+
+  onSubmit = formValues => {
+    console.log(formValues);
+  };
+
   render() {
     return (
-      <Form>
+      <Form onSubmit={this.props.handleSubmit(this.onSubmit)}>
         <Field
           component={this.renderInput}
           name="runName"
@@ -30,6 +41,7 @@ class RunForm extends Component {
           label="Run Name"
           type="text"
           placeholder="Give your run a name"
+          defaultValue="Fun Run" // Eventually, maybe do like Strava where default depends on time of day
         />
         <Field
           component={this.renderInput}
@@ -79,9 +91,26 @@ class RunForm extends Component {
               id="thePace"
               label="Pace"
               type="text"
+              placeholder="what is the pace?"
+            />
+          </Col>
+          <Col md={4}>
+            <Field
+              component={this.renderInput}
+              name="terrain"
+              id="theTerrain"
+              label="Terrain"
+              type="text"
+              placeholder="eg. road, trail, hilly, etc"
             />
           </Col>
         </Row>
+        <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+          <Button color="danger" style={{ marginRight: '10px' }}>
+            Cancel
+          </Button>
+          <Button color="primary">Submit</Button>
+        </div>
       </Form>
     );
   }
