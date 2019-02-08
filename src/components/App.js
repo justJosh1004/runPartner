@@ -4,6 +4,7 @@ import { Router, Route, Switch } from 'react-router-dom';
 import Header from './Header';
 import Home from './Home';
 import RunList from './runs/RunList';
+import RunCreate from './runs/RunCreate';
 import history from '../history';
 import '../styles/styles.css';
 
@@ -18,6 +19,7 @@ class App extends Component {
               <Switch>
                 <Route path="/" exact component={Home} />
                 <Route path="/runs" exact component={RunList} />
+                <Route path="/runs/create" exact component={RunCreate} />
               </Switch>
             </div>
           </div>

@@ -27,7 +27,13 @@ class RunList extends Component {
   render() {
     return (
       <div>
-        <h2>Runs</h2>
+        <div className="row justify-content-between">
+          <h2 className="col-4">Runs</h2>
+          <Link to={`/runs/create`} className="btn btn-outline-dark col-3">
+            Create A Run
+          </Link>
+        </div>
+        <br />
         <table className="table table-striped table-hover">
           <thead>
             <tr>
