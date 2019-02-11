@@ -24,8 +24,8 @@ export const signOut = () => {
 };
 
 export const createRun = formValues => async (dispatch, getState) => {
-  const { userId } = getState().auth; // hard code for one user for now
-  const response = await runs.post('/runs', { ...formValues, userId });
+  const { userId, owner } = getState().auth; // hard code for one user for now
+  const response = await runs.post('/runs', { ...formValues, userId, owner });
 
   dispatch({ type: CREATE_RUN, payload: response.data });
 

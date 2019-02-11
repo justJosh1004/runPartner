@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { Field, reduxForm } from 'redux-form';
 import {
   Col,
@@ -66,7 +67,7 @@ class RunForm extends Component {
       <Form onSubmit={this.props.handleSubmit(this.onSubmit)}>
         <Field
           component={this.renderInput}
-          name="runName"
+          name="name"
           id="theRunName"
           label="Run Name"
           type="text"
@@ -75,7 +76,7 @@ class RunForm extends Component {
         />
         <Field
           component={this.renderInput}
-          name="runLocation"
+          name="location"
           id="theRunLocation"
           label="Run Location*"
           type="text"
@@ -85,7 +86,7 @@ class RunForm extends Component {
           <Col md={6}>
             <Field
               component={this.renderInput}
-              name="runTime"
+              name="startTime"
               id="theRunTime"
               label="Run Time*"
               type="time"
@@ -95,7 +96,7 @@ class RunForm extends Component {
           <Col md={6}>
             <Field
               component={this.renderInput}
-              name="runDate"
+              name="date"
               id="theRunDate"
               label="Run Day*"
               type="date"
@@ -127,7 +128,7 @@ class RunForm extends Component {
           <Col md={4}>
             <Field
               component={this.renderInput}
-              name="terrain"
+              name="type"
               id="theTerrain"
               label="Terrain"
               type="text"
@@ -138,7 +139,9 @@ class RunForm extends Component {
         <FormText>* are required fields.</FormText>
         <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
           <Button color="danger" style={{ marginRight: '10px' }}>
-            Cancel
+            <Link to="/runs" style={{ color: 'white' }}>
+              Cancel
+            </Link>
           </Button>
           <Button color="primary">Submit</Button>
         </div>
