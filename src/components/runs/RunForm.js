@@ -138,12 +138,14 @@ class RunForm extends Component {
         </Row>
         <FormText>* are required fields.</FormText>
         <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-          <Button type="button" color="danger" style={{ marginRight: '10px' }}>
-            <Link to="/runs" style={{ color: 'white' }}>
+          <Button type="button" color="danger" className="button-fix">
+            <Link to="/runs" className="button-link">
               Cancel
             </Link>
           </Button>
-          <Button color="primary">Submit</Button>
+          <Button color="primary" className="button-fix">
+            Submit
+          </Button>
         </div>
       </Form>
     );
