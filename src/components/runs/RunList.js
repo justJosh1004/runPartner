@@ -47,17 +47,17 @@ class RunList extends Component {
     console.log(this.props.runs);
     return this.props.runs.map((run, i) => {
       return (
-        <tr key={run.id}>
+        <tr key={run.id} className="table-align">
           <th className="table-align" scope="row">
             {run.owner}
           </th>
-          <td className="table-align">{run.type}</td>
-          <td className="table-align">{run.location}</td>
-          <td className="table-align">{run.startTime}</td>
-          <td className="table-align">pace</td>
-          <td className="table-align">{run.miles}</td>
-          <td className="table-align">{run.date}</td>
-          <td className="table-align">{this.renderActions(run)}</td>
+          <td>{run.location}</td>
+          <td>{run.startTime}</td>
+          <td>pace</td>
+          <td>{run.miles}</td>
+          <td>{run.type}</td>
+          <td>{run.date}</td>
+          <td>{this.renderActions(run)}</td>
         </tr>
       );
     });
