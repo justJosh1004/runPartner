@@ -77,11 +77,11 @@ class RunList extends Component {
           <thead>
             <tr>
               <th scope="col">Organizer</th>
-              <th scope="col">Type</th>
               <th scope="col">Location</th>
               <th scope="col">Start Time</th>
               <th scope="col">Pace</th>
               <th scope="col">Miles</th>
+              <th scope="col">Type</th>
               <th scope="col">Date</th>
               <th scope="col" />
             </tr>
