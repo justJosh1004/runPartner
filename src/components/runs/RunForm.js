@@ -138,7 +138,7 @@ class RunForm extends Component {
         </Row>
         <FormText>* are required fields.</FormText>
         <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-          <Button color="danger" style={{ marginRight: '10px' }}>
+          <Button type="button" color="danger" style={{ marginRight: '10px' }}>
             <Link to="/runs" style={{ color: 'white' }}>
               Cancel
             </Link>
