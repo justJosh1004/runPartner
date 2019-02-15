@@ -28,7 +28,18 @@ class RunList extends Component {
         </div>
       );
     } else {
-      return <p>Not The Owner</p>;
+      return (
+        <div>
+          <Button color="primary" className="button-fix">
+            <Link to={`/runs/${run.id}`} className="button-link">
+              View
+            </Link>
+          </Button>
+          <Button color="success" className="button-fix">
+            Join
+          </Button>
+        </div>
+      );
     }
   }
 
