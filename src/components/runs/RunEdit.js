@@ -11,6 +11,10 @@ class RunEdit extends Component {
     this.props.fetchRun(this.props.match.params.id);
   }
 
+  onSubmit = formValues => {
+    this.props.editRun(this.props.match.params.id, formValues);
+  };
+
   render() {
     if (!this.props.run) {
       return (
@@ -38,6 +42,7 @@ class RunEdit extends Component {
             'pace',
             'type'
           )}
+          onSubmit={this.onSubmit}
         />
       </div>
     );
