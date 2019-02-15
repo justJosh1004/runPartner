@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import _ from 'lodash';
+import { Spinner } from 'reactstrap';
 
 import { fetchRun, editRun } from '../../actions';
 import RunForm from './RunForm';
@@ -12,7 +13,15 @@ class RunEdit extends Component {
 
   render() {
     if (!this.props.run) {
-      return <div>Loading...</div>;
+      return (
+        <div className="d-flex justify-content-center align-items-center">
+          <Spinner type="grow" color="dark" />
+          <Spinner type="grow" color="dark" />
+          <Spinner type="grow" color="dark" />
+          <Spinner type="grow" color="dark" />
+          <Spinner type="grow" color="dark" />
+        </div>
+      );
     }
 
     return (
