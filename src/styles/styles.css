@@ -16,3 +16,7 @@
   text-decoration: none;
   color: white;
 }
+
+.table-align {
+  vertical-align: middle !important;
+}
