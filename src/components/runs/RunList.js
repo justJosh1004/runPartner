@@ -2,13 +2,38 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchRuns } from '../../actions';
+import { Table, Button } from 'reactstrap';
+
+import '../../styles/styles.css';
 
 class RunList extends Component {
   componentDidMount() {
     this.props.fetchRuns();
   }
 
+  renderActions(run) {
+    if (run.userId === this.props.currentUserId) {
+      return (
+        <div>
+          <Button color="info" className="button-fix">
+            <Link to={`/runs/edit/${run.id}`} className="button-link">
+              Edit
+            </Link>
+          </Button>
+          <Button color="danger" className="button-fix">
+            <Link to={`/runs/delete/${run.id}`} className="button-link">
+              Delete
+            </Link>
+          </Button>
+        </div>
+      );
+    } else {
+      return <p>Not The Owner</p>;
+    }
+  }
+
   renderList() {
+    console.log(this.props.runs);
     return this.props.runs.map((run, i) => {
       return (
         <tr key={run.id}>
@@ -19,6 +44,7 @@ class RunList extends Component {
           <td>pace</td>
           <td>{run.miles}</td>
           <td>{run.date}</td>
+          <td>{this.renderActions(run)}</td>
         </tr>
       );
     });
@@ -34,7 +60,7 @@ class RunList extends Component {
           </Link>
         </div>
         <br />
-        <table className="table table-striped table-hover">
+        <Table striped hover>
           <thead>
             <tr>
               <th scope="col">Organizer</th>
@@ -44,10 +70,11 @@ class RunList extends Component {
               <th scope="col">Pace</th>
               <th scope="col">Miles</th>
               <th scope="col">Date</th>
+              <th scope="col" />
             </tr>
           </thead>
           <tbody>{this.renderList()}</tbody>
-        </table>
+        </Table>
       </div>
     );
   }

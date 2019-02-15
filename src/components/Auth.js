@@ -5,7 +5,7 @@ import { signIn, signOut } from '../actions';
 
 class Auth extends Component {
   componentDidMount() {
-    this.props.signIn();
+    this.props.signIn(1);
   }
 
   onSignInClick = () => {

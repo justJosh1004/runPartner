@@ -1,3 +1,18 @@
 .main {
   padding-top: 80px;
 }
+
+.button-fix {
+  margin: 2px;
+  min-width: 73px;
+}
+
+.button-link {
+  text-decoration: none;
+  color: white;
+}
+
+.button-link:hover {
+  text-decoration: none;
+  color: white;
+}
