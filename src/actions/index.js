@@ -7,7 +7,8 @@ import {
   DELETE_RUN,
   EDIT_RUN,
   SIGN_IN,
-  SIGN_OUT
+  SIGN_OUT,
+  TOGGLE_MODAL
 } from './types';
 
 export const signIn = userId => {
@@ -20,6 +21,12 @@ export const signIn = userId => {
 export const signOut = () => {
   return {
     type: SIGN_OUT
+  };
+};
+
+export const toggleModal = () => {
+  return {
+    type: TOGGLE_MODAL
   };
 };
 

@@ -6,3 +6,5 @@ export const EDIT_RUN = 'EDIT_RUN';
 
 export const SIGN_IN = 'SIGN_IN';
 export const SIGN_OUT = 'SIGN_OUT';
+
+export const TOGGLE_MODAL = 'TOGGLE_MODAL';

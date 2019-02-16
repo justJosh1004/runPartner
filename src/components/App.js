@@ -25,7 +25,7 @@ class App extends Component {
                 <Route path="/runs/create" exact component={RunCreate} />
                 {/* <Route path="/runs/:id" exact component={RunShow} /> */}
                 <Route path="/runs/edit/:id" exact component={RunEdit} />
-                {/* <Route path="/runs/delete/:id" exact component={RunDelete} /> */}
+                <Route path="/runs/delete/:id" exact component={RunDelete} />
               </Switch>
             </div>
           </div>

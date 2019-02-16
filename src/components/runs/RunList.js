@@ -11,6 +11,8 @@ class RunList extends Component {
     this.props.fetchRuns();
   }
 
+  toggleModal() {}
+
   renderActions(run) {
     if (run.userId === this.props.currentUserId) {
       return (
@@ -20,10 +22,13 @@ class RunList extends Component {
               Edit
             </Link>
           </Button>
-          <Button color="danger" className="button-fix">
-            <Link to={`/runs/delete/${run.id}`} className="button-link">
-              Delete
-            </Link>
+          <Button
+            type="button"
+            onClick={this.toggleModal}
+            color="danger"
+            className="button-fix"
+          >
+            Delete
           </Button>
         </div>
       );
