@@ -1,8 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { fetchRuns } from '../../actions';
-import { Table, Button } from 'reactstrap';
+import _ from 'lodash';
+import { fetchRuns, deleteRun, toggleModal } from '../../actions';
+import {
+  Table,
+  Button,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter
+} from 'reactstrap';
 
 import '../../styles/styles.css';
 
@@ -11,7 +19,37 @@ class RunList extends Component {
     this.props.fetchRuns();
   }
 
-  toggleModal() {}
+  toggleModal = () => {
+    this.props.toggleModal(!this.props.isOpen);
+  };
+
+  runDelete = id => {
+    this.props.deleteRun(id);
+    this.toggleModal();
+  };
+
+  renderDeleteModal = run => {
+    const { name, miles, location, id } = _.find(this.props.runs, { id: run });
+    return (
+      <Modal isOpen={this.props.isOpen} toggle={this.toggleModal}>
+        <ModalHeader toggle={this.toggleModal}>{name}</ModalHeader>
+        <ModalBody>
+          <p>
+            {miles} mile run at {location}.
+          </p>
+          Are you sure you want to delete this run?
+        </ModalBody>
+        <ModalFooter>
+          <Button onClick={this.toggleModal} color="primary">
+            Cancel
+          </Button>
+          <Button color="danger" onClick={this.runDelete(id)}>
+            Delete
+          </Button>
+        </ModalFooter>
+      </Modal>
+    );
+  };
 
   renderActions(run) {
     if (run.userId === this.props.currentUserId) {
@@ -30,6 +68,7 @@ class RunList extends Component {
           >
             Delete
           </Button>
+          {this.renderDeleteModal(run.id)}
         </div>
       );
     } else {
@@ -49,7 +88,8 @@ class RunList extends Component {
   }
 
   renderList() {
-    console.log(this.props.runs);
+    // console.log(this.props.runs);
+    // console.log('PROPS: ', this.props);
     return this.props.runs.map((run, i) => {
       return (
         <tr key={run.id} className="table-align">
@@ -102,11 +142,12 @@ function mapStateToProps(state) {
   return {
     runs: Object.values(state.runs),
     currentUserId: state.auth.userId,
-    isSignedIn: state.auth.isSignedIn
+    isSignedIn: state.auth.isSignedIn,
+    isOpen: state.modal.isOpen
   };
 }
 
 export default connect(
   mapStateToProps,
-  { fetchRuns }
+  { fetchRuns, deleteRun, toggleModal }
 )(RunList);

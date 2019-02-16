@@ -7,7 +7,7 @@ const INITIAL_STATE = {
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case TOGGLE_MODAL:
-      return { ...state, isOpen: !state };
+      return { ...state, isOpen: action.payload };
     default:
       return state;
   }

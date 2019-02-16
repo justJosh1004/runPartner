@@ -24,9 +24,10 @@ export const signOut = () => {
   };
 };
 
-export const toggleModal = () => {
+export const toggleModal = isOpen => {
   return {
-    type: TOGGLE_MODAL
+    type: TOGGLE_MODAL,
+    payload: isOpen
   };
 };
 
