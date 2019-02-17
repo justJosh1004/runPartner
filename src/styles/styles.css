@@ -24,3 +24,7 @@
 .table-align td {
   vertical-align: middle !important;
 }
+
+.auth-button {
+  min-width: 89px;
+}

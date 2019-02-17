@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Button } from 'reactstrap';
 
 import { signIn, signOut } from '../actions';
+import '../styles/styles.css';
 
 class Auth extends Component {
   componentDidMount() {
@@ -21,15 +23,23 @@ class Auth extends Component {
       return null;
     } else if (this.props.isSignedIn) {
       return (
-        <button onClick={this.onSignOutClick} className="btn btn-danger">
+        <Button
+          color="danger"
+          onClick={this.onSignOutClick}
+          className="auth-button"
+        >
           Sign Out
-        </button>
+        </Button>
       );
     } else {
       return (
-        <button onClick={this.onSignInClick} className="btn btn-primary">
+        <Button
+          color="primary"
+          onClick={this.onSignInClick}
+          className="auth-button"
+        >
           Sign In
-        </button>
+        </Button>
       );
     }
   }
