@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import { Field, reduxForm } from 'redux-form';
 import {
   Col,
@@ -12,6 +11,8 @@ import {
   FormFeedback,
   FormText
 } from 'reactstrap';
+
+import history from '../../history';
 
 class RunForm extends Component {
   renderError({ error, touched }) {
@@ -138,10 +139,15 @@ class RunForm extends Component {
         </Row>
         <FormText>* are required fields.</FormText>
         <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-          <Button type="button" color="danger" className="button-fix">
-            <Link to="/runs" className="button-link">
-              Cancel
-            </Link>
+          <Button
+            type="button"
+            onClick={() => history.goBack()}
+            color="danger"
+            className="button-fix"
+          >
+            {/* <Link to="/runs" className="button-link"> */}
+            Cancel
+            {/* </Link> */}
           </Button>
           <Button color="primary" className="button-fix">
             Submit

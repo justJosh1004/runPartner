@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
+import { Link } from 'react-router-dom';
 import { Button, Card, CardDeck, CardBody, CardHeader } from 'reactstrap';
 
 function mapStateToProps(state) {
@@ -20,13 +20,17 @@ class Home extends Component {
         <Card className="text-center">
           <CardHeader>Look At Runs</CardHeader>
           <CardBody>
-            <Button>Go To Runs</Button>
+            <Link to="/runs">
+              <Button>Go To Runs</Button>
+            </Link>
           </CardBody>
         </Card>
         <Card className="text-center">
           <CardHeader>Create A Run</CardHeader>
           <CardBody>
-            <Button>Add A Run</Button>
+            <Link to="/runs/create">
+              <Button>Add A Run</Button>
+            </Link>
           </CardBody>
         </Card>
       </CardDeck>
