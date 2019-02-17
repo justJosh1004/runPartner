@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import { Button, Card, CardDeck, CardBody, CardHeader } from 'reactstrap';
+
 function mapStateToProps(state) {
   return {};
 }
@@ -8,11 +10,26 @@ function mapStateToProps(state) {
 class Home extends Component {
   render() {
     return (
-      <div>
-        <h1>This is the homepage!</h1>
-        <h3>Look at Runs</h3>
-        <h3>Go to Profile</h3>
-      </div>
+      <CardDeck>
+        <Card className="text-center">
+          <CardHeader>Look At My Profile</CardHeader>
+          <CardBody>
+            <Button>Go To Profile</Button>
+          </CardBody>
+        </Card>
+        <Card className="text-center">
+          <CardHeader>Look At Runs</CardHeader>
+          <CardBody>
+            <Button>Go To Runs</Button>
+          </CardBody>
+        </Card>
+        <Card className="text-center">
+          <CardHeader>Create A Run</CardHeader>
+          <CardBody>
+            <Button>Add A Run</Button>
+          </CardBody>
+        </Card>
+      </CardDeck>
     );
   }
 }
