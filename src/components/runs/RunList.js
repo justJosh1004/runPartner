@@ -43,7 +43,7 @@ class RunList extends Component {
           <Button onClick={this.toggleModal} color="primary">
             Cancel
           </Button>
-          <Button color="danger" onClick={this.runDelete(id)}>
+          <Button color="danger" onClick={() => this.runDelete(id)}>
             Delete
           </Button>
         </ModalFooter>
@@ -88,8 +88,6 @@ class RunList extends Component {
   }
 
   renderList() {
-    // console.log(this.props.runs);
-    // console.log('PROPS: ', this.props);
     return this.props.runs.map((run, i) => {
       return (
         <tr key={run.id} className="table-align">
