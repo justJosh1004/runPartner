@@ -162,13 +162,13 @@ const validate = formValues => {
   const errors = {};
 
   if (!formValues.runLocation) {
-    errors.runLocation = 'There must be a location.';
+    errors.location = 'There must be a location.';
   }
   if (!formValues.runTime) {
-    errors.runTime = 'What time is the run?';
+    errors.startTime = 'What time is the run?';
   }
   if (!formValues.runDate) {
-    errors.runDate = 'When is the run?';
+    errors.date = 'When is the run?';
   }
   if (!formValues.miles) {
     errors.miles = 'How far is the run?';
