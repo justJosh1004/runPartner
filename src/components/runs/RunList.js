@@ -4,12 +4,19 @@ import { Link } from 'react-router-dom';
 import _ from 'lodash';
 import { fetchRuns, deleteRun, toggleModal } from '../../actions';
 import {
-  Table,
+  // Table,
   Button,
   Modal,
   ModalHeader,
   ModalBody,
-  ModalFooter
+  ModalFooter,
+  Card,
+  CardHeader,
+  CardBody,
+  CardFooter,
+  Container,
+  Row,
+  Col
 } from 'reactstrap';
 
 import '../../styles/styles.css';
@@ -106,6 +113,55 @@ class RunList extends Component {
     });
   }
 
+  renderRun() {
+    return this.props.runs.map(run => {
+      return (
+        <Card key={run.id} style={{ marginBottom: '20px' }}>
+          <CardHeader>
+            <h3>{run.name}</h3>
+          </CardHeader>
+          <Container>
+            <Row>
+              <Col>
+                <CardBody>
+                  <Row>
+                    <Col md="3">Host: </Col>
+                    <Col md="9">{run.owner}</Col>
+                  </Row>
+                  <Row>
+                    <Col md="3">Miles: </Col>
+                    <Col md="9">{run.miles}</Col>
+                  </Row>
+                  <Row>
+                    <Col md="3">Pace: </Col>
+                    <Col md="9">the pace</Col>
+                  </Row>
+                  <Row>
+                    <Col md="3">Time: </Col>
+                    <Col md="9">{run.startTime}</Col>
+                  </Row>
+                  <Row>
+                    <Col md="3">Date: </Col>
+                    <Col md="9">{run.date}</Col>
+                  </Row>
+                </CardBody>
+              </Col>
+              <Col>
+                <CardBody>
+                  <h4>Location:</h4>
+                  {run.location}
+                </CardBody>
+              </Col>
+            </Row>
+          </Container>
+          <CardFooter className="text-right">
+            {this.renderActions(run)}
+          </CardFooter>
+        </Card>
+      );
+    });
+  }
+
   render() {
     return (
       <div>
@@ -116,7 +172,7 @@ class RunList extends Component {
           </Link>
         </div>
         <br />
-        <Table striped hover>
+        {/* <Table striped hover>
           <thead>
             <tr>
               <th scope="col">Organizer</th>
@@ -130,7 +186,8 @@ class RunList extends Component {
             </tr>
           </thead>
           <tbody>{this.renderList()}</tbody>
-        </Table>
+        </Table> */}
+        {this.renderRun()}
       </div>
     );
   }
