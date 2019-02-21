@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import _ from 'lodash';
-import { fetchRuns, deleteRun, toggleModal } from '../../actions';
+import ReactMapGL, {Marker} from 'react-map-gl';
 import {
   // Table,
   Button,
@@ -18,7 +18,11 @@ import {
   Row,
   Col
 } from 'reactstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMapMarker } from '@fortawesome/free-solid-svg-icons';
 
+import { fetchRuns, deleteRun, toggleModal } from '../../actions';
+import { TOKEN } from '../../apis/mapsToken';
 import '../../styles/styles.css';
 
 class RunList extends Component {
@@ -42,7 +46,7 @@ class RunList extends Component {
         <ModalHeader toggle={this.toggleModal}>{name}</ModalHeader>
         <ModalBody>
           <p>
-            {miles} mile run at {location}.
+            {miles} mile run at {location.name}.
           </p>
           Are you sure you want to delete this run?
         </ModalBody>
@@ -96,12 +100,13 @@ class RunList extends Component {
 
   renderList() {
     return this.props.runs.map((run, i) => {
+      console.log(run);
       return (
         <tr key={run.id} className="table-align">
           <th className="table-align" scope="row">
             {run.owner}
           </th>
-          <td>{run.location}</td>
+          <td>{run.location.name}</td>
           <td>{run.startTime}</td>
           <td>pace</td>
           <td>{run.miles}</td>
@@ -148,8 +153,22 @@ class RunList extends Component {
               </Col>
               <Col>
                 <CardBody>
-                  <h4>Location:</h4>
-                  {run.location}
+                  <h4>Location: {run.location.name}</h4>
+                  <ReactMapGL
+                    mapboxApiAccessToken={TOKEN}
+                    width={400}
+                    height={300}
+                    latitude={run.location.lat}
+                    longitude={run.location.lng}
+                    zoom={15}
+                  >
+                    <Marker
+                      latitude={run.location.lat}
+                      longitude={run.location.lng}
+                    >
+                      <FontAwesomeIcon icon={faMapMarker} />
+                    </Marker>
+                  </ReactMapGL>
                 </CardBody>
               </Col>
             </Row>
