@@ -3,8 +3,6 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Button, Card, CardDeck, CardBody, CardHeader } from 'reactstrap';
 
-import Map from './Map';
-
 function mapStateToProps(state) {
   return {};
 }
@@ -37,7 +35,6 @@ class Home extends Component {
             </CardBody>
           </Card>
         </CardDeck>
-        <Map />
       </div>
     );
   }
