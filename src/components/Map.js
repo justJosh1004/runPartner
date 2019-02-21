@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import ReactMapGL from 'react-map-gl';
+import ReactMapGL, { Marker } from 'react-map-gl';
 import Geocoder from 'react-map-gl-geocoder';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMapMarker } from '@fortawesome/free-solid-svg-icons';
 import { TOKEN } from '../apis/mapsToken';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
@@ -13,6 +15,10 @@ class Map extends Component {
       latitude: 40.4406,
       longitude: -79.9959,
       zoom: 10
+    },
+    marker: {
+      lat: 40.4406,
+      lng: -79.9959
     }
   };
 
@@ -29,14 +35,15 @@ class Map extends Component {
     });
   };
 
-  getCoordinates = coords => {};
-
   handleViewportChange = viewport => {
     this.setState({
-      viewport: { ...this.state.viewport, ...viewport }
+      viewport: { ...this.state.viewport, ...viewport },
+      marker: {
+        ...this.state.marker,
+        lat: viewport.latitude,
+        lng: viewport.longitude
+      }
     });
-    console.log('THE VIEWPORT: ', viewport);
-    this.getCoordinates(viewport.latitude, viewport.longitude);
   };
 
   handleGeocoderViewportChange = viewport => {
@@ -45,6 +52,18 @@ class Map extends Component {
     return this.handleViewportChange({
       ...viewport,
       ...geocoderDefaultOverrides
+    });
+  };
+
+  setMarkerLat = (lat = this.state.viewport.latitude) => {
+    this.setState({
+      marker: { ...this.state.marker, lat: lat }
+    });
+  };
+
+  setMarkerLng = (lng = this.state.viewport.longitude) => {
+    this.setState({
+      marker: { ...this.state.marker, lng: lng }
     });
   };
 
@@ -61,6 +80,18 @@ class Map extends Component {
           onViewportChange={this.handleGeocoderViewportChange}
           mapboxApiAccessToken={TOKEN}
         />
+        <Marker
+          latitude={this.state.marker.lat}
+          longitude={this.state.marker.lng}
+          draggable={true}
+          onDragEnd={event => {
+            console.log(event);
+            this.setMarkerLat(event.lngLat[1]);
+            this.setMarkerLng(event.lngLat[0]);
+          }}
+        >
+          <FontAwesomeIcon icon={faMapMarker} />
+        </Marker>
       </ReactMapGL>
     );
   }
