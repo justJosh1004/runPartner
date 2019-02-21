@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import _ from 'lodash';
-import ReactMapGL, {Marker} from 'react-map-gl';
+import ReactMapGL, { Marker } from 'react-map-gl';
 import {
   // Table,
   Button,
@@ -127,7 +127,7 @@ class RunList extends Component {
           </CardHeader>
           <Container>
             <Row>
-              <Col>
+              <Col lg={6}>
                 <CardBody>
                   <Row>
                     <Col md="3">Host: </Col>
@@ -151,12 +151,12 @@ class RunList extends Component {
                   </Row>
                 </CardBody>
               </Col>
-              <Col>
+              <Col lg={6}>
                 <CardBody>
                   <h4>Location: {run.location.name}</h4>
                   <ReactMapGL
                     mapboxApiAccessToken={TOKEN}
-                    width={400}
+                    width={'100%'}
                     height={300}
                     latitude={run.location.lat}
                     longitude={run.location.lng}
