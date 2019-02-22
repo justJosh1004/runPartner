@@ -7,6 +7,7 @@ import RunForm from './RunForm';
 class RunCreate extends Component {
   onSubmit = formValues => {
     this.props.createRun(formValues);
+    console.log(formValues);
   };
 
   render() {

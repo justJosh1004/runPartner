@@ -13,6 +13,7 @@ import {
 } from 'reactstrap';
 
 import history from '../../history';
+import Map from '../Map';
 
 class RunForm extends Component {
   renderError({ error, touched }) {
@@ -59,8 +60,22 @@ class RunForm extends Component {
     );
   };
 
+  handleSelectPoint = coords => {
+    console.log('These are the coordinates: ', coords);
+    this.props.change('lat', coords.lat);
+    this.props.change('lng', coords.lng);
+  };
+
+  renderMap = () => {
+    return <Map onSelectPoint={this.handleSelectPoint} />;
+  };
+
   onSubmit = formValues => {
     this.props.onSubmit(formValues);
+  };
+
+  coordsInput = (input, id, type) => {
+    return null;
   };
 
   render() {
@@ -82,6 +97,18 @@ class RunForm extends Component {
           label="Run Location*"
           type="text"
           placeholder="Where is the run?"
+        />
+        <Field
+          component={this.renderMap}
+          name="lat"
+          id="theLat"
+          type="number"
+        />
+        <Field
+          component={this.coordsInput}
+          name="lng"
+          id="theLng"
+          type="number"
         />
         <Row form>
           <Col md={6}>
@@ -161,13 +188,13 @@ class RunForm extends Component {
 const validate = formValues => {
   const errors = {};
 
-  if (!formValues.runLocation) {
+  if (!formValues.location) {
     errors.location = 'There must be a location.';
   }
-  if (!formValues.runTime) {
+  if (!formValues.startTime) {
     errors.startTime = 'What time is the run?';
   }
-  if (!formValues.runDate) {
+  if (!formValues.date) {
     errors.date = 'When is the run?';
   }
   if (!formValues.miles) {

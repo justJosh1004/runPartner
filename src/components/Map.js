@@ -10,11 +10,11 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 class Map extends Component {
   state = {
     viewport: {
-      width: 400,
+      width: '100%',
       height: 400,
       latitude: 40.4406,
       longitude: -79.9959,
-      zoom: 10
+      zoom: 14
     },
     marker: {
       lat: 40.4406,
@@ -67,6 +67,11 @@ class Map extends Component {
     });
   };
 
+  handleSelectPoint = () => {
+    console.log('In handleSelectPoint');
+    this.props.onSelectPoint(this.state.marker);
+  };
+
   render() {
     return (
       <ReactMapGL
@@ -83,14 +88,16 @@ class Map extends Component {
         <Marker
           latitude={this.state.marker.lat}
           longitude={this.state.marker.lng}
+          offsetTop={-35}
           draggable={true}
           onDragEnd={event => {
             console.log(event);
             this.setMarkerLat(event.lngLat[1]);
             this.setMarkerLng(event.lngLat[0]);
+            this.handleSelectPoint();
           }}
         >
-          <FontAwesomeIcon icon={faMapMarker} />
+          <FontAwesomeIcon icon={faMapMarker} size={'3x'} />
         </Marker>
       </ReactMapGL>
     );

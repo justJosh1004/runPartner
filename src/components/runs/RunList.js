@@ -66,11 +66,11 @@ class RunList extends Component {
     if (run.userId === this.props.currentUserId) {
       return (
         <div>
-          <Button color="info" className="button-fix">
-            <Link to={`/runs/edit/${run.id}`} className="button-link">
+          <Link to={`/runs/edit/${run.id}`}>
+            <Button color="info" className="button-fix">
               Edit
-            </Link>
-          </Button>
+            </Button>
+          </Link>
           <Button
             type="button"
             onClick={this.toggleModal}
@@ -85,11 +85,11 @@ class RunList extends Component {
     } else {
       return (
         <div>
-          <Button color="primary" className="button-fix">
-            <Link to={`/runs/${run.id}`} className="button-link">
+          <Link to={`/runs/${run.id}`}>
+            <Button color="primary" className="button-fix">
               View
-            </Link>
-          </Button>
+            </Button>
+          </Link>
           <Button color="success" className="button-fix">
             Join
           </Button>
@@ -153,19 +153,16 @@ class RunList extends Component {
               </Col>
               <Col lg={6}>
                 <CardBody>
-                  <h4>Location: {run.location.name}</h4>
+                  <h4>Location: {run.location}</h4>
                   <ReactMapGL
                     mapboxApiAccessToken={TOKEN}
                     width={'100%'}
                     height={300}
-                    latitude={run.location.lat}
-                    longitude={run.location.lng}
+                    latitude={run.lat}
+                    longitude={run.lng}
                     zoom={15}
                   >
-                    <Marker
-                      latitude={run.location.lat}
-                      longitude={run.location.lng}
-                    >
+                    <Marker latitude={run.lat} longitude={run.lng}>
                       <FontAwesomeIcon icon={faMapMarker} />
                     </Marker>
                   </ReactMapGL>
