@@ -14,7 +14,7 @@ import '../styles/styles.css';
 class App extends Component {
   render() {
     return (
-      <div className="container">
+      <div className="container" style={{ marginBottom: '150px' }}>
         <Router history={history}>
           <div>
             <Header />

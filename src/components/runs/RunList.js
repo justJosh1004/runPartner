@@ -123,7 +123,6 @@ class RunList extends Component {
 
   renderRun() {
     return this.props.runs.map(run => {
-      console.log(run);
       if (new Date(run.date) >= new Date()) {
         return (
           <Card key={run.id} style={{ marginBottom: '20px' }}>
