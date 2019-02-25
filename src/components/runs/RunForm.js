@@ -67,7 +67,7 @@ class RunForm extends Component {
   };
 
   renderMap = () => {
-    if (!this.props.initialValues.lat) {
+    if (!this.props.initialValues) {
       return <Map onSelectPoint={this.handleSelectPoint} />;
     } else {
       return (
