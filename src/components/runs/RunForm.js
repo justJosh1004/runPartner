@@ -67,7 +67,17 @@ class RunForm extends Component {
   };
 
   renderMap = () => {
-    return <Map onSelectPoint={this.handleSelectPoint} />;
+    if (!this.props.initialValues.lat) {
+      return <Map onSelectPoint={this.handleSelectPoint} />;
+    } else {
+      return (
+        <Map
+          onSelectPoint={this.handleSelectPoint}
+          latitude={this.props.initialValues.lat}
+          longitude={this.props.initialValues.lng}
+        />
+      );
+    }
   };
 
   onSubmit = formValues => {
@@ -79,6 +89,7 @@ class RunForm extends Component {
   };
 
   render() {
+    console.log(this.props);
     return (
       <Form onSubmit={this.props.handleSubmit(this.onSubmit)}>
         <Field

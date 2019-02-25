@@ -98,24 +98,27 @@ class RunList extends Component {
     }
   }
 
-  renderList() {
-    return this.props.runs.map((run, i) => {
-      console.log(run);
+  renderMap(run) {
+    if (run.lat) {
       return (
-        <tr key={run.id} className="table-align">
-          <th className="table-align" scope="row">
-            {run.owner}
-          </th>
-          <td>{run.location.name}</td>
-          <td>{run.startTime}</td>
-          <td>pace</td>
-          <td>{run.miles}</td>
-          <td>{run.type}</td>
-          <td>{run.date}</td>
-          <td>{this.renderActions(run)}</td>
-        </tr>
+        <CardBody>
+          <h4>Location: {run.location}</h4>
+          <ReactMapGL
+            mapboxApiAccessToken={TOKEN}
+            width={'100%'}
+            height={300}
+            latitude={run.lat}
+            longitude={run.lng}
+            zoom={15}
+          >
+            <Marker latitude={run.lat} longitude={run.lng}>
+              <FontAwesomeIcon icon={faMapMarker} />
+            </Marker>
+          </ReactMapGL>
+        </CardBody>
       );
-    });
+    }
+    return <CardBody>Host did not choose a location.</CardBody>;
   }
 
   renderRun() {
@@ -151,23 +154,7 @@ class RunList extends Component {
                   </Row>
                 </CardBody>
               </Col>
-              <Col lg={6}>
-                <CardBody>
-                  <h4>Location: {run.location}</h4>
-                  <ReactMapGL
-                    mapboxApiAccessToken={TOKEN}
-                    width={'100%'}
-                    height={300}
-                    latitude={run.lat}
-                    longitude={run.lng}
-                    zoom={15}
-                  >
-                    <Marker latitude={run.lat} longitude={run.lng}>
-                      <FontAwesomeIcon icon={faMapMarker} />
-                    </Marker>
-                  </ReactMapGL>
-                </CardBody>
-              </Col>
+              <Col lg={6}>{this.renderMap(run)}</Col>
             </Row>
           </Container>
           <CardFooter className="text-right">
@@ -188,21 +175,6 @@ class RunList extends Component {
           </Link>
         </div>
         <br />
-        {/* <Table striped hover>
-          <thead>
-            <tr>
-              <th scope="col">Organizer</th>
-              <th scope="col">Location</th>
-              <th scope="col">Start Time</th>
-              <th scope="col">Pace</th>
-              <th scope="col">Miles</th>
-              <th scope="col">Type</th>
-              <th scope="col">Date</th>
-              <th scope="col" />
-            </tr>
-          </thead>
-          <tbody>{this.renderList()}</tbody>
-        </Table> */}
         {this.renderRun()}
       </div>
     );

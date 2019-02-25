@@ -8,6 +8,7 @@ import { TOKEN } from '../apis/mapsToken';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
 class Map extends Component {
+  // try and get default values from parent component
   state = {
     viewport: {
       width: '100%',
@@ -26,6 +27,22 @@ class Map extends Component {
 
   componentDidMount() {
     window.addEventListener('resize', this.resize);
+    console.log(this.props);
+
+    if (this.props.latitude) {
+      this.setState({
+        viewport: {
+          ...this.state.viewport,
+          latitude: this.props.latitude,
+          longitude: this.props.longitude
+        },
+        marker: {
+          ...this.state.marker,
+          lat: this.props.latitude,
+          lng: this.props.longitude
+        }
+      });
+    }
   }
 
   resize = () => {
