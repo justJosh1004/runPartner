@@ -5,7 +5,7 @@ import Auth from './Auth';
 
 const Header = () => {
   return (
-    <nav className="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
+    <nav className="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
       <span className="navbar-brand">AktivPal</span>
       <button
         className="navbar-toggler"
@@ -18,9 +18,9 @@ const Header = () => {
       >
         <span className="navbar-toggler-icon" />
       </button>
-      <div className="collapse navbar-collapse d-flex" id="navbarHeader">
+      <div className="collapse navbar-collapse" id="navbarHeader">
         <div className="navbar-nav p-2">
-          <Link to="/" className="nav-item nav-link active">
+          <Link to="/" className="nav-item nav-link">
             Home <span className="sr-only">(current)</span>
           </Link>
           <Link to="/" className="nav-item nav-link">
