@@ -123,45 +123,49 @@ class RunList extends Component {
 
   renderRun() {
     return this.props.runs.map(run => {
-      return (
-        <Card key={run.id} style={{ marginBottom: '20px' }}>
-          <CardHeader>
-            <h3>{run.name}</h3>
-          </CardHeader>
-          <Container>
-            <Row>
-              <Col lg={6}>
-                <CardBody>
-                  <Row>
-                    <Col md="3">Host: </Col>
-                    <Col md="9">{run.owner}</Col>
-                  </Row>
-                  <Row>
-                    <Col md="3">Miles: </Col>
-                    <Col md="9">{run.miles}</Col>
-                  </Row>
-                  <Row>
-                    <Col md="3">Pace: </Col>
-                    <Col md="9">the pace</Col>
-                  </Row>
-                  <Row>
-                    <Col md="3">Time: </Col>
-                    <Col md="9">{run.startTime}</Col>
-                  </Row>
-                  <Row>
-                    <Col md="3">Date: </Col>
-                    <Col md="9">{run.date}</Col>
-                  </Row>
-                </CardBody>
-              </Col>
-              <Col lg={6}>{this.renderMap(run)}</Col>
-            </Row>
-          </Container>
-          <CardFooter className="text-right">
-            {this.renderActions(run)}
-          </CardFooter>
-        </Card>
-      );
+      console.log(run);
+      if (new Date(run.date) >= new Date()) {
+        return (
+          <Card key={run.id} style={{ marginBottom: '20px' }}>
+            <CardHeader>
+              <h3>{run.name}</h3>
+            </CardHeader>
+            <Container>
+              <Row>
+                <Col lg={6}>
+                  <CardBody>
+                    <Row>
+                      <Col md="3">Host: </Col>
+                      <Col md="9">{run.owner}</Col>
+                    </Row>
+                    <Row>
+                      <Col md="3">Miles: </Col>
+                      <Col md="9">{run.miles}</Col>
+                    </Row>
+                    <Row>
+                      <Col md="3">Pace: </Col>
+                      <Col md="9">the pace</Col>
+                    </Row>
+                    <Row>
+                      <Col md="3">Time: </Col>
+                      <Col md="9">{run.startTime}</Col>
+                    </Row>
+                    <Row>
+                      <Col md="3">Date: </Col>
+                      <Col md="9">{run.date}</Col>
+                    </Row>
+                  </CardBody>
+                </Col>
+                <Col lg={6}>{this.renderMap(run)}</Col>
+              </Row>
+            </Container>
+            <CardFooter className="text-right">
+              {this.renderActions(run)}
+            </CardFooter>
+          </Card>
+        );
+      }
+      return null;
     });
   }
 
